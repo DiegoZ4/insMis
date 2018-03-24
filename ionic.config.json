@@ -1,0 +1,8 @@
+{
+  "name": "insMis",
+  "app_id": "ef6e0e82",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
