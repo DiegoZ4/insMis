@@ -1,11 +1,42 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color=primary>
     <ion-title>
-      About
+      Primer Login
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
 
+    <ion-card-content color="primary">
+      Debes actualizar tu contraseña para poder continuar operando.
+    </ion-card-content>
+
+  </ion-card>
+
+  <form [formGroup]="loginPass">
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input formControlName="pass1" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Escribe nuevamente la Contraseña</ion-label>
+      <ion-input formControlName="pass2" type="number"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button style="margin-bottom:20px" (click)="changePass()"
+            color="primary" ion-button block>Ingresar</button>
+
+    <button *ngIf="islogin" ion-button block color="danger">Las claves no coinciden</button>
+  </div>
+
+  </form>
 </ion-content>

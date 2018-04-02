@@ -1,17 +1,44 @@
 <ion-header>
-  <ion-navbar>
-    <ion-title>Home</ion-title>
+  <ion-navbar color="primary">
+    <ion-title>Instituto Misiones</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
+
+
+<ion-content padding class="text-center">
+  
+  <ion-card color=primary>
+    <ion-card-content>
+      Porfavor identifiquese con su usuario y contraseña
+    </ion-card-content>
+  </ion-card>
+
+
+
+  <form [formGroup]="loginForm">
+
+  <ion-list>
+
+    <ion-item>
+      <ion-label floating>DNI</ion-label>
+      <ion-input formControlName="user" type="number"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input formControlName="pass" type="number"></ion-input>
+    </ion-item>
+
+  </ion-list>
+
+  <div padding>
+    <button style="margin-bottom:20px" (click)="login()"
+            color="primary" ion-button block>Ingresar</button>
+
+    <button *ngIf="islogin" ion-button block color="danger">El usuario o la contraseña no existen</button>
+  </div>
+
+  </form>
+
 </ion-content>

@@ -1,17 +1,59 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar hideBackButton color=primary>
     <ion-title>
-      Contact
+      {{nombre}}
     </ion-title>
   </ion-navbar>
+
+  <ion-toolbar no-border-top>
+    <ion-segment [(ngModel)]="pet">
+      <ion-segment-button value="pagos">
+        Ver Pagos
+      </ion-segment-button>
+      <ion-segment-button value="notas">
+        Ver Notas
+      </ion-segment-button>
+      <ion-segment-button value="descargar">
+        Materiales
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-list>
-    <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
-    </ion-item>
-  </ion-list>
+  <div [ngSwitch]="pet">
+    <ion-list *ngSwitchCase="'pagos'">
+      <ion-item *ngFor="let item of datosPagos">
+          <h2>Cuota Nº: {{item.cuota}}</h2>
+          <h3>${{item.pago}}</h3>
+          <p>Fecha de pago: {{item.fecha |  date:'fullDate' | uppercase}}</p>
+          <p>{{item.cpbte}}</p>
+      </ion-item>
+
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'notas'">
+      <ion-item *ngFor="let item of datosNotas">
+        <div style="width:100%; background-color:#f8f8f8; padding:5%">
+          <h2 style="border-bottom:1px solid #888; padding-bottom: 10px; margin-bottom:10px">Mes: {{item.mes}}</h2>
+          <h3 style="background:#488aff; padding:10px; color:white; margin-bottom:8px">Examen</h3>
+          <p>{{item.examen |  date:'fullDate' | uppercase}}</p>
+          <h4>Calificación: <ion-badge color=primary item-Right>{{item.calificacion}}</ion-badge></h4>
+          <h3 style="background:#32db64; padding:10px; color:white; margin-bottom:8px">TP</h3>
+          <p>{{item.tp |  date:'fullDate' | uppercase}}</p>
+          <h4>Calificación: <ion-badge color=secondary item-Right>{{item.calificacionTp}}</ion-badge></h4>
+        </div>
+
+      </ion-item>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'descargar'">
+      <ion-item>
+
+        <a href="http://insmis.com.ar.elserver.com/descargas" color=primary ion-button block target="_blank">
+          <ion-icon ios="ios-cloud-download" md="md-cloud-download" syle="margin-right:10px"></ion-icon>  Descargar Material
+        </a>
+      </ion-item>
+    </ion-list>
+  </div>
 </ion-content>
